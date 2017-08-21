@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom"
 import PropTypes from 'prop-types';
 import {Card, CardBlock, CardFooter} from "reactstrap";
 import classNames from 'classnames';
@@ -8,6 +9,7 @@ const propTypes = {
   header: PropTypes.string,
   mainText: PropTypes.string,
   icon: PropTypes.string,
+  iconText: PropTypes.string,
   color: PropTypes.string,
   variant: PropTypes.string,
   footer: PropTypes.bool,
@@ -23,12 +25,14 @@ const defaultProps = {
   icon: "fa fa-cogs",
   color: 'primary',
   variant: "0",
-  link: "#"
+  link: "#",
+  iconText: "1/23",
+  nodeUrl: "/#/"
 };
 
 class Widget02 extends Component {
   render() {
-    const {className, cssModule, header, mainText, icon, color, footer, link, children, variant, ...attributes} = this.props;
+    const {className, cssModule, header, mainText, icon, iconText, nodeUrl, color, footer, link, children, variant, ...attributes} = this.props;
 
     // demo purposes only
     const padding = (variant === '0' ? {card: "p-3", icon: "p-3", lead: "mt-2"} : ( variant === "1" ? {
@@ -50,7 +54,7 @@ class Widget02 extends Component {
         return (
           <CardFooter className="px-3 py-2">
             <a className="font-weight-bold font-xs btn-block text-muted" href={link}>View More
-              <i className="fa fa-angle-right float-right font-lg"></i></a>
+              <i className="float-right font-sm"></i></a>
           </CardFooter>
         );
       }
@@ -58,11 +62,13 @@ class Widget02 extends Component {
 
     return (
       <Card>
-        <CardBlock className={ card.classes } {...attributes}>
-          { blockIcon(card.icon) }
-          <div className={ lead.classes }>{ header }</div>
-          <div className="text-muted text-uppercase font-weight-bold font-xs">{ mainText }</div>
-        </CardBlock>
+        <Link to={nodeUrl}>
+            <CardBlock className={ card.classes } {...attributes}>
+              { blockIcon(card.icon) }
+              <div className={ lead.classes }>{ header }</div>
+              <div className="text-muted text-uppercase font-weight-bold font-xs">{ mainText }</div>
+            </CardBlock>
+        </Link>
         { cardFooter() }
       </Card>
     )

@@ -1,0 +1,6 @@
+{
+  "name": "Open Tasks",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./OpenTasks.js"
+}

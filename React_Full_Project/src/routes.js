@@ -2,6 +2,9 @@ const routes = {
   '/': 'Home',
   '/dashboard': 'Dashboard',
   '/components': 'Components',
+  '/business': 'Business', // TODO: this needs to be dynamically generated
+  '/tasks': 'Open Tasks', // TODO: this needs to be dynamically generated
+  '/customer': 'Customers', // TODO: this needs to be dynamically generated
   '/charts': 'Charts',
   '/components/buttons': 'Buttons',
   '/components/social-buttons': 'Social Buttons',

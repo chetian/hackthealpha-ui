@@ -1,1 +1,25 @@
 // Here you can add other styles
+a:hover {
+    text-decoration: none;
+}
+.card-section {
+    div {
+        display: inline-block;
+    }
+}
+.card-body {
+    h1 {
+        padding-bottom: 10px;
+    }
+}
+.full-width {
+    tr {
+        width: 100%;
+    }
+}
+table {
+    width: 100%;
+}
+.data-row {
+    border-bottom: 1px solid #f0f0f0;
+}
