@@ -23,7 +23,7 @@ module.exports = {
   },
   watch: true,
   devServer: {
-    contentBase: BUILD_DIR,
+    contentBase: './public',
     //   port: 9001,
     compress: true,
     hot: true,
