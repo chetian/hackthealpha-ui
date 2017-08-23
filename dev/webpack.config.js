@@ -23,6 +23,7 @@ module.exports = {
   },
   watch: true,
   devServer: {
+    publicPath: "/",
     contentBase: './public',
     //   port: 9001,
     compress: true,
