@@ -24,7 +24,7 @@ module.exports = {
   watch: true,
   devServer: {
     publicPath: "/",
-    contentBase: './public',
+    contentBase: './build',
     //   port: 9001,
     compress: true,
     hot: true,
