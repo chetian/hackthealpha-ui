@@ -22,25 +22,10 @@ class Customers extends Component {
       this.state = {
           initialRender: false,
           pageData: {
-              primary: "",
-              secondary: ""
+              primary: {},
+              secondary: {}
           }
       }
-
-      this.templateData = {
-          pageTitle: "Bob Smith",
-          pageType: "customer",
-          pageData: {
-              tasks: [{
-                  link: "1002",
-                  id: 2,
-                  name: "Ask for Clarity - 3/11 -test",
-              }],
-              description: "Ask him to pay! - HOPEFULLY BY CHECK!",
-              date: "March 12th, 2017",
-              notes: "Steve: can we offer a 1% discount to get a check?"
-          }
-      };
       this.updateData = this.updateData.bind(this);
       this.doCategoryCall = this.doCategoryCall.bind(this);
   }
@@ -75,7 +60,6 @@ class Customers extends Component {
       {Object.keys(obj).map(function(key){
           let link = key;
           let value = obj[key];
-
           if (Array.isArray(value)) {
               link = value[0].link;
               value = value[0].name;
@@ -101,51 +85,59 @@ class Customers extends Component {
 
   doCategoryCall(event) {
       const category = event.currentTarget.textContent;
-        // console.log("`/swim/~${category}`", `/swim/~${category}`);
+        console.log("`/swim/~${category}`", `/swim/~${category}`);
         this.fetchData(`/swim/~${category}`);
   }
 
-  renderPrimary(obj){
-    return(
-        <div>
-            {Object.keys(obj).map((key) => {
-                    // console.log("obj", obj);
-                    // console.log("key", key);
-                    // console.log("obj[key]", obj[key]);
-                let link = key;
-                let value = obj[key];
-                //   if (Array.isArray(value)) {
-                //       link = value[0].link;
-                //       value = value[0].name;
-                //   }
-                // value.map((arrItem)=> {
-                //     console.log("arrItem", arrItem);
-                // });
-                return (
-                    <ul>
-                        <li key={key} className="full-width">
-                            <span className="renderKey" onClick={this.doCategoryCall}>{key}</span>
-                                <div>
-                                    {value.map((arrItem)=> {
-                                        return(
-                                            <li className="renderValue" key={arrItem} onClick={this.updateData}>{arrItem}</li>
-                                        )
-                                    })}
-                                </div>
-                        </li>
-                    </ul>
-                    );
-                })}
-        </div>
-    );
+  renderUI(obj){
+
+      let childObj = {};
+      let childArray = [];
+
+      // pull out the child keys
+      Object.keys(obj).map((k) => {
+          childObj = k;
+          // ie solvents2, solvents3
+          childArray.push(obj[childObj]);
+      });
+
+      // now we map through childArray's objects
+      return childArray.map((each, i) => {
+          return(
+              <div key={i} className="area">
+                  {Object.keys(each).map((key) => {
+                      let value = each[key];
+                      return (
+                          <div>
+                              <ul>
+                                  <span className="renderKey" onClick={this.doCategoryCall}>{key}</span>
+                                  <div>
+                                      {value.map((arrItem)=> {
+                                          return(
+                                              <li className="renderValue" key={arrItem} onClick={this.updateData}>{arrItem}</li>
+                                          )
+                                      })}
+                                  </div>
+                              </ul>
+                          </div>
+                          );
+                      })}
+              </div>
+          );
+      });
   }
 
   render() {
-    let renderPrim1 = "loading", renderPrim2 = "";
-    if (this.state.initialRender === true && this.state.pageData && this.state.pageData.primary) {
-        // renderPrim1 = this.renderPrimary(this.pageData.primary.customers);
-        // console.log("this.state.pageData.secondary.keys()", this.state.pageData.secondary.keys());
-        renderPrim2 = this.renderPrimary(this.state.pageData.secondary.customers);
+    const primaryDataExists = Object.keys(this.state.pageData.primary).length > 0;
+    const secondaryDataExists = Object.keys(this.state.pageData.secondary).length > 0;
+
+      // check for the length of the primary obj
+    let renderPrimary = "loading", renderSecondary = "loading";
+    if (this.state.initialRender === true && this.state.pageData.primary && primaryDataExists) {
+        renderPrimary = this.renderUI(this.state.pageData.primary);
+    }
+    if (this.state.initialRender === true && this.state.pageData.secondary && secondaryDataExists) {
+        renderSecondary = this.renderUI(this.state.pageData.secondary);
     }
 
     return (
@@ -155,12 +147,12 @@ class Customers extends Component {
               <Card>
                 <CardBlock className="card-body">
                     <div className="">
-                        {renderPrim1}
+                        {renderPrimary}
                         <br/>
                     </div>
                     <div className="">
                         <h6>Also related:</h6>
-                        {renderPrim2}
+                        {renderSecondary}
                     </div>
                 </CardBlock>
               </Card>
