@@ -29,8 +29,8 @@ class Relater extends Component {
       this.state = {
           initialRender: false,
           pageData: {
-              main: {},
-              other: {}
+              primary: {},
+              secondary: {}
           },
           view: UI.detail,
           category: "",
@@ -42,7 +42,6 @@ class Relater extends Component {
 
   fetchData(url, ui){
       fetch(url).then((resp) => resp.json()).then(resp => {
-          console.log("resp", resp);
           this.setState({
               initialRender: true,
               pageData: resp,
@@ -165,16 +164,16 @@ class Relater extends Component {
   }
 
   renderDetailView() {
-    const primaryDataExists = Object.keys(this.state.pageData.main).length > 0;
-    const secondaryDataExists = Object.keys(this.state.pageData.other).length > 0;
+    const primaryDataExists = Object.keys(this.state.pageData.primary).length > 0;
+    const secondaryDataExists = Object.keys(this.state.pageData.secondary).length > 0;
 
       // check for the length of the primary obj
     let renderPrimary = "No primary data", renderSecondary = "No secondary data";
-    if (this.state.initialRender === true && this.state.pageData.main && primaryDataExists) {
-        renderPrimary = this.renderDetails(this.state.pageData.main);
+    if (this.state.initialRender === true && this.state.pageData.primary && primaryDataExists) {
+        renderPrimary = this.renderDetails(this.state.pageData.primary);
     }
-    if (this.state.initialRender === true && this.state.pageData.other && secondaryDataExists) {
-        renderSecondary = this.renderDetails(this.state.pageData.other);
+    if (this.state.initialRender === true && this.state.pageData.secondary && secondaryDataExists) {
+        renderSecondary = this.renderDetails(this.state.pageData.secondary);
     }
 
     return (
