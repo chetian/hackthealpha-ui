@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Customers from "./Customers"
+import Relater from "./Relater"
 import {Row} from "reactstrap";
 
 class Dashboard extends Component {
@@ -12,7 +12,7 @@ class Dashboard extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Customers {...this.props}/>
+          <Relater {...this.props}/>
         </Row>
       </div>
     )
