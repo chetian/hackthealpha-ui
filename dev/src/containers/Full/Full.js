@@ -20,12 +20,6 @@ import Tabs from '../../views/Components/Tabs/';
 import FontAwesome from '../../views/Icons/FontAwesome/';
 import SimpleLineIcons from '../../views/Icons/SimpleLineIcons/';
 
-// new pages
-import OpenTasks from '../../views/business/OpenTasks/';
-import OpenTasksDetails from '../../views/business/OpenTasksDetails/';
-import Customers from '../../views/business/Customers/';
-
-
 // we temporarily removed <Breadcrumb />
 class Full extends Component {
   render() {
@@ -35,9 +29,6 @@ class Full extends Component {
             <Container fluid>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-                <Route path="/business/tasks/" name="Open Tasks" component={OpenTasks}/>
-                <Route path="/tasks/:id" name="Open Tasks Details" component={OpenTasksDetails}/>
-                <Route path="/customer/:id" name="Customer Details" component={Customers}/>
                 <Route path="/components/buttons" name="Buttons" component={Buttons}/>
                 <Route path="/components/cards" name="Cards" component={Cards}/>
                 <Route path="/components/forms" name="Forms" component={Forms}/>
