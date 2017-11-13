@@ -25,15 +25,13 @@ import OpenTasks from '../../views/business/OpenTasks/';
 import OpenTasksDetails from '../../views/business/OpenTasksDetails/';
 import Customers from '../../views/business/Customers/';
 
+
+// we temporarily removed <Breadcrumb />
 class Full extends Component {
   render() {
     return (
       <div className="app">
-        <Header />
-        <div className="app-body">
-          <Sidebar {...this.props}/>
-          <main className="main">
-            <Breadcrumb />
+        <div>
             <Container fluid>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
@@ -55,10 +53,8 @@ class Full extends Component {
                 <Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>
-          </main>
           <Aside />
         </div>
-        <Footer />
       </div>
     );
   }

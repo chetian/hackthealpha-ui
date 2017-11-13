@@ -18,7 +18,7 @@ class Customers extends Component {
 
   constructor(props) {
       super(props)
-
+      console.log("We WAS KANGZ");
       this.state = {
           initialRender: false,
           pageData: {
@@ -31,14 +31,12 @@ class Customers extends Component {
   }
 
   fetchData(url){
-      console.log("FETCH URL", url);
       fetch(url).then((resp) => resp.json()).then(resp => {
-          console.log("resp", resp);
+          console.log("response", resp);
           this.setState({
               initialRender: true,
               pageData: resp
           });
-          this.forceUpdate();
           return resp;
       });
   }
@@ -47,7 +45,7 @@ class Customers extends Component {
       // ALL ITEMS FROM A LIST: /swim/~Email
       // ALL LISTS: /swim/~~
       // SPECIFIC ITEM: /swim/Email---te@awesome.com
-    this.fetchData('/swim/Team---Web');
+    this.fetchData('/swim/Character---Jorah%20Mormont');
   }
 
   componentWillReceiveProps(nextProps){
@@ -132,7 +130,7 @@ class Customers extends Component {
     const secondaryDataExists = Object.keys(this.state.pageData.secondary).length > 0;
 
       // check for the length of the primary obj
-    let renderPrimary = "loading", renderSecondary = "loading";
+    let renderPrimary = "No primary data", renderSecondary = "No secondary data";
     if (this.state.initialRender === true && this.state.pageData.primary && primaryDataExists) {
         renderPrimary = this.renderUI(this.state.pageData.primary);
     }

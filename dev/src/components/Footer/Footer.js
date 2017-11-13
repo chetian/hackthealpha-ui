@@ -4,7 +4,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="app-footer">
-        <span className="float-right">Hack The Alpha</span>
+        <span className="float-right">Relater</span>
       </footer>
     )
   }
